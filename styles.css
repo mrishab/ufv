@@ -1,0 +1,712 @@
+/* ==========================================================================
+   University of the Fraser Valley - Student Profile Stylesheet
+   Exact Replica of Banner Student Self-Service Interface (Banner 9 XE)
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #F3F5F4;
+  color: #222222;
+  font-size: 13px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-width: 1200px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Window Frame Top Bar (matches reference.jpg y=0..5)
+   ========================================================================== */
+
+.window-top-bar {
+  height: 6px;
+  background-color: #363636;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Header Bar
+   ========================================================================== */
+
+.header-container {
+  width: 100%;
+}
+
+.header {
+  background-color: #20382B;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px 0 78px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo img {
+  height: 42px;
+  display: block;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.header-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+
+.header-icon-btn:hover {
+  opacity: 0.85;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+
+.header-user:hover {
+  opacity: 0.9;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-name {
+  white-space: nowrap;
+}
+
+/* Accent line under header */
+.header-accent {
+  background-color: #429C54;
+  height: 4px;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Breadcrumb Bar
+   ========================================================================== */
+
+.breadcrumb-bar {
+  background-color: #FFFFFF;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  padding: 0 21px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.breadcrumb-link {
+  color: #357755;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.breadcrumb-link:hover {
+  text-decoration: underline;
+  color: #23653E;
+}
+
+.breadcrumb-separator {
+  color: #B7B7B7;
+  margin: 0 10px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Title Bar
+   ========================================================================== */
+
+.title-bar {
+  background-color: #F7F7F7;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 21px;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.title-bar h1 {
+  font-size: 21px;
+  font-weight: 600;
+  color: #212121;
+  letter-spacing: -0.2px;
+}
+
+/* ==========================================================================
+   Status Banner
+   ========================================================================== */
+
+.status-bar {
+  background-color: #222222;
+  height: 41px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px 0 2px;
+}
+
+.status-capsule {
+  display: flex;
+  align-items: center;
+  border: 1px solid #81A395;
+  border-radius: 4px;
+  background-color: #000000;
+  height: 32px;
+  width: 1669px;
+  max-width: 1669px;
+  flex-shrink: 0;
+  margin-right: 15px;
+}
+
+.status-sec-1 {
+  width: 268px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 8px 0 6px;
+  gap: 6px;
+  color: #FFFFFF;
+  font-size: 13px;
+}
+
+.status-sec-1 label {
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.status-select {
+  background-color: #000000;
+  color: #FFFFFF;
+  border: 1px solid #555555;
+  border-radius: 2px;
+  padding: 2px 22px 2px 8px;
+  font-size: 12.5px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%226%22%3E%3Cpath%20d%3D%22M0%200l5%206%205-6z%22%20fill%3D%22%23ffffff%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  background-size: 8px 5px;
+  cursor: pointer;
+  outline: none;
+}
+
+.status-select:focus {
+  border-color: #81A395;
+}
+
+.status-divider {
+  width: 1px;
+  height: 18px;
+  background-color: #444444;
+  flex-shrink: 0;
+}
+
+.status-sec-2 {
+  width: 314px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  white-space: nowrap;
+  padding: 0 10px;
+}
+
+.standing-label {
+  color: #9E9E9E;
+}
+
+.standing-val {
+  color: #FFFFFF;
+  font-weight: 400;
+}
+
+.status-sec-3 {
+  width: 583px;
+  flex-shrink: 0;
+}
+
+.status-sec-4 {
+  flex: 1;
+}
+
+.status-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  color: #FFFFFF;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.status-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-badge {
+  background-color: #8B2230;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 3px;
+  padding: 1px 7px;
+  min-width: 18px;
+  text-align: center;
+}
+
+.status-pipe {
+  color: #555555;
+  font-size: 14px;
+}
+
+/* ==========================================================================
+   Main Layout Container
+   ========================================================================== */
+
+.layout-wrapper {
+  display: flex;
+  width: 100%;
+  min-height: 802px;
+  background-color: #F3F5F4;
+}
+
+/* ==========================================================================
+   Left Sidebar
+   ========================================================================== */
+
+.sidebar {
+  width: 334px;
+  flex-shrink: 0;
+  background-color: #222222;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #333333;
+}
+
+.sidebar-profile {
+  background-color: #444444;
+  padding: 0 0 16px 0;
+  text-align: center;
+  border-bottom: 1px solid #555555;
+}
+
+.sidebar-avatar {
+  width: 186px;
+  height: 184px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 10px auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-name {
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: underline;
+  display: inline-block;
+  transition: color 0.15s ease;
+}
+
+.sidebar-name:hover {
+  color: #DCDCDC;
+}
+
+.sidebar-menu-top {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-item-top {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.sidebar-item-top.active {
+  background-color: #767676;
+  height: 36px;
+}
+
+.sidebar-item-top.sub-1 {
+  background-color: #363636;
+  height: 36px;
+}
+
+.sidebar-item-top.sub-1:hover {
+  background-color: #424242;
+}
+
+.sidebar-item-top.sub-2 {
+  background-color: #333333;
+  height: 38px;
+  border-bottom: 1px solid #222222;
+}
+
+.sidebar-item-top.sub-2:hover {
+  background-color: #3D3D3D;
+}
+
+.sidebar-menu-bottom {
+  display: flex;
+  flex-direction: column;
+  background-color: #222222;
+  flex-grow: 1;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  height: 38px;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.sidebar-link:hover {
+  background-color: #2C2C2C;
+}
+
+/* ==========================================================================
+   Content Area
+   ========================================================================== */
+
+.content-area {
+  display: flex;
+  flex-grow: 1;
+  background-color: #F3F5F4;
+}
+
+/* Left Content Column (Bio, General, Graduation) */
+.content-left {
+  width: 666px;
+  flex-shrink: 0;
+  background-color: #FFFFFF;
+  border-right: 1px solid #DCDCDC;
+  border-bottom: 1px solid #DCDCDC;
+  padding: 18px 22px 20px 18px;
+  align-self: flex-start;
+}
+
+.section-block {
+  margin-bottom: 18px;
+}
+
+.section-block:last-child {
+  margin-bottom: 0;
+}
+
+.section-header {
+  font-size: 14px;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  background-color: #8EB4BE;
+  color: #FFFFFF;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: bold;
+  font-family: Georgia, serif;
+  font-style: italic;
+  cursor: help;
+  user-select: none;
+}
+
+.kv-grid {
+  display: grid;
+  grid-template-columns: 343px 1fr;
+  row-gap: 5px;
+  column-gap: 10px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.kv-label {
+  font-weight: 700;
+  color: #222222;
+}
+
+.kv-value {
+  font-weight: 400;
+  color: #222222;
+  word-break: break-word;
+}
+
+.kv-link {
+  color: #222222;
+  text-decoration: underline;
+  font-weight: 400;
+  transition: color 0.15s ease;
+}
+
+.kv-link:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+/* Right Content Column (Cards) */
+.content-right {
+  width: 1000px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  background-color: #FFFFFF;
+}
+
+#card-curriculum {
+  border-right: 1px solid #DCDCDC;
+}
+
+#card-courses {
+  border-top: none;
+}
+
+.card-header {
+  height: 30px;
+  background-color: #F5F5F5;
+  padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #DCDCDC;
+  border-right: 1px solid #DCDCDC;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s ease;
+}
+
+.card-header:hover {
+  background-color: #EEEEEE;
+}
+
+.card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #333333;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.chevron-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333333;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.chevron-btn.collapsed {
+  transform: rotate(180deg);
+}
+
+/* Curriculum Tabs */
+.card-tabs {
+  display: flex;
+  background-color: #F5F5F5;
+  border-bottom: 1px solid #B3BDC9;
+  padding: 4px 6px 0 6px;
+  gap: 4px;
+  border-right: 1px solid #DCDCDC;
+}
+
+.tab-btn {
+  border: 1px solid #DCDCDC;
+  border-bottom: none;
+  background-color: #F9FAFC;
+  color: #444444;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 18px;
+  border-radius: 2px 2px 0 0;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.tab-btn.active {
+  background-color: #358353;
+  color: #FFFFFF;
+  border-color: #358353;
+  font-weight: 600;
+}
+
+.tab-btn:hover:not(.active) {
+  background-color: #EFEFEF;
+}
+
+.tab-pane {
+  padding: 16px 26px 20px 26px;
+  display: none;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #DCDCDC;
+  border-right: 1px solid #DCDCDC;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+.card-kv-grid {
+  display: grid;
+  grid-template-columns: 252px 1fr;
+  row-gap: 5px;
+  column-gap: 10px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* Registered Courses Table */
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.courses-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  border-right: 1px solid #DCDCDC;
+}
+
+.courses-table th {
+  background-color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+  color: #222222;
+  padding: 7px 12px;
+  border: 1px solid #DCDCDC;
+  border-left: none;
+  white-space: nowrap;
+}
+
+.courses-table td {
+  background-color: #FFFFFF;
+  font-size: 13px;
+  color: #222222;
+  padding: 7px 12px;
+  border: 1px solid #DCDCDC;
+  border-left: none;
+}
+
+.courses-table tr:hover td {
+  background-color: #F8F9FA;
+}
+
+.table-link {
+  color: #222222;
+  text-decoration: underline;
+  font-weight: 400;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.table-link:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+/* Total Hours Summary Bar */
+.courses-footer {
+  background-color: #D5D9DC;
+  padding: 7px 14px;
+  border: 1px solid #DCDCDC;
+  border-top: none;
+  border-left: none;
+  font-size: 13px;
+  color: #222222;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.courses-footer .footer-title {
+  font-weight: 700;
+}
+
+.footer-separator {
+  color: #888888;
+}
+
+/* ==========================================================================
+   Page Footer
+   ========================================================================== */
+
+.site-footer {
+  background-color: #F4F4F4;
+  border-top: 1px solid #DCDCDC;
+  height: 59px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12.5px;
+  color: #555555;
+  width: 100%;
+}
