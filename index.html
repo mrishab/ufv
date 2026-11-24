@@ -20,7 +20,7 @@
         </a>
       </div>
       <div class="header-right">
-        <button class="header-icon-btn" aria-label="Settings" title="Settings">
+        <button class="header-icon-btn" id="header-settings-btn" aria-label="Settings" title="Settings / Edit Profile">
           <!-- 8-tooth gear matching reference screenshot -->
           <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
@@ -134,20 +134,20 @@
           <div class="kv-grid">
             <div class="kv-label">Email:</div>
             <div class="kv-value">
-              <a href="mailto:Rishab.Manocha@student.ufv.ca" class="kv-link">Rishab.Manocha@student.ufv.ca</a>
+              <a href="mailto:Rishab.Manocha@student.ufv.ca" class="kv-link" id="bio-email">Rishab.Manocha@student.ufv.ca</a>
             </div>
 
             <div class="kv-label">Date of Birth:</div>
-            <div class="kv-value">23/01</div>
+            <div class="kv-value" id="bio-dob">23/01</div>
 
             <div class="kv-label">Citizenship Resident Status:</div>
-            <div class="kv-value">Permanent Resident (Landed)</div>
+            <div class="kv-value" id="bio-citizenship">Permanent Resident (Landed)</div>
 
             <div class="kv-label">Emergency Contact:</div>
-            <div class="kv-value">Chanana, Gursharan Kaur</div>
+            <div class="kv-value" id="bio-emergency-contact">Chanana, Gursharan Kaur</div>
 
             <div class="kv-label">Emergency Phone:</div>
-            <div class="kv-value">604 8329391</div>
+            <div class="kv-value" id="bio-emergency-phone">604 8329391</div>
           </div>
         </article>
 
@@ -159,31 +159,31 @@
           </h2>
           <div class="kv-grid">
             <div class="kv-label">Level:</div>
-            <div class="kv-value">Credit</div>
+            <div class="kv-value" id="gen-level">Credit</div>
 
             <div class="kv-label">Class:</div>
-            <div class="kv-value">91 or more credits completed</div>
+            <div class="kv-value" id="gen-class">91 or more credits completed</div>
 
             <div class="kv-label">Status:</div>
-            <div class="kv-value">Active</div>
+            <div class="kv-value" id="gen-status">Active</div>
 
             <div class="kv-label">Residency:</div>
-            <div class="kv-value">Fraser Valley (UFV) region</div>
+            <div class="kv-value" id="gen-residency">Fraser Valley (UFV) region</div>
 
             <div class="kv-label">First Term Attended:</div>
-            <div class="kv-value">Winter 2016</div>
+            <div class="kv-value" id="gen-first-term">Winter 2016</div>
 
             <div class="kv-label">Last Term Attended:</div>
-            <div class="kv-value">Winter 2026</div>
+            <div class="kv-value" id="gen-last-term">Winter 2026</div>
           </div>
         </article>
 
         <!-- Graduation Information -->
         <article class="section-block">
           <h2 class="section-header">Graduation Information</h2>
-          <div class="kv-grid">
+          <div class="kv-grid" id="grad-grid">
             <div class="kv-label">Graduation Applications:</div>
-            <div class="kv-value">None</div>
+            <div class="kv-value" id="grad-applications">None</div>
 
             <div class="kv-label">Awarded Degree:</div>
             <div class="kv-value">Computer Info Systems Dipl</div>
@@ -225,37 +225,37 @@
             <div class="tab-pane active" id="tab-primary" role="tabpanel">
               <div class="card-kv-grid">
                 <div class="kv-label">Degree:</div>
-                <div class="kv-value">Bach of Comp Info Systems</div>
+                <div class="kv-value" id="curr-degree">Bach of Comp Info Systems</div>
 
                 <div class="kv-label">Level:</div>
-                <div class="kv-value">Credit</div>
+                <div class="kv-value" id="curr-level">Credit</div>
 
                 <div class="kv-label">Course:</div>
-                <div class="kv-value">Bachelor of Computer Info Sys</div>
+                <div class="kv-value" id="curr-course">Bachelor of Computer Info Sys</div>
 
                 <div class="kv-label">Major:</div>
-                <div class="kv-value">Computer Info Systems Deg</div>
+                <div class="kv-value" id="curr-major">Computer Info Systems Deg</div>
 
                 <div class="kv-label">Department:</div>
-                <div class="kv-value">School of Computing</div>
+                <div class="kv-value" id="curr-department">School of Computing</div>
 
                 <div class="kv-label">Concentration:</div>
-                <div class="kv-value">Not Provided</div>
+                <div class="kv-value" id="curr-concentration">Not Provided</div>
 
                 <div class="kv-label">Minor:</div>
-                <div class="kv-value">Not Provided</div>
+                <div class="kv-value" id="curr-minor">Not Provided</div>
 
                 <div class="kv-label">Concentration:</div>
-                <div class="kv-value">Not Provided</div>
+                <div class="kv-value" id="curr-concentration-2">Not Provided</div>
 
                 <div class="kv-label">Admit Type:</div>
-                <div class="kv-value">Has attended post-secondary</div>
+                <div class="kv-value" id="curr-admit-type">Has attended post-secondary</div>
 
                 <div class="kv-label">Admit Term:</div>
-                <div class="kv-value">Winter 2025</div>
+                <div class="kv-value" id="curr-admit-term">Winter 2025</div>
 
                 <div class="kv-label">Catalogue Term:</div>
-                <div class="kv-value">Winter 2025</div>
+                <div class="kv-value" id="curr-catalogue-term">Winter 2025</div>
               </div>
             </div>
 
@@ -263,7 +263,7 @@
             <div class="tab-pane" id="tab-secondary" role="tabpanel">
               <div class="card-kv-grid">
                 <div class="kv-label">Degree:</div>
-                <div class="kv-value">None</div>
+                <div class="kv-value" id="curr-secondary-degree">None</div>
               </div>
             </div>
 
@@ -271,22 +271,22 @@
             <div class="tab-pane" id="tab-hours" role="tabpanel">
               <div class="card-kv-grid">
                 <div class="kv-label">Total Registered Hours:</div>
-                <div class="kv-value">17</div>
+                <div class="kv-value" id="hours-total">17</div>
 
                 <div class="kv-label">Billing Hours:</div>
-                <div class="kv-value">17</div>
+                <div class="kv-value" id="hours-billing">17</div>
 
                 <div class="kv-label">CEU Hours:</div>
-                <div class="kv-value">0</div>
+                <div class="kv-value" id="hours-ceu">0</div>
 
                 <div class="kv-label">Min Hours:</div>
-                <div class="kv-value">0</div>
+                <div class="kv-value" id="hours-min">0</div>
 
                 <div class="kv-label">Max Hours:</div>
-                <div class="kv-value">20</div>
+                <div class="kv-value" id="hours-max">20</div>
 
                 <div class="kv-label">Institutional GPA:</div>
-                <div class="kv-value">Not Provided</div>
+                <div class="kv-value" id="hours-gpa">Not Provided</div>
               </div>
             </div>
           </div>
@@ -316,7 +316,7 @@
                     <th style="width: 20.3%;">Instructor</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="courses-tbody">
                   <tr>
                     <td>Design &amp; Analysis: Algorithms</td>
                     <td>COMP 359 ON1</td>
@@ -370,18 +370,18 @@
             </div>
 
             <!-- Table Footer Summary Bar -->
-            <div class="courses-footer">
+            <div class="courses-footer" id="courses-footer">
               <span class="footer-title">Total Hours</span>
               <span class="footer-separator">|</span>
-              <span>Registered Hours: 17</span>
+              <span>Registered Hours: <span id="footer-registered-hours">17</span></span>
               <span class="footer-separator">|</span>
-              <span>Billing Hours: 17</span>
+              <span>Billing Hours: <span id="footer-billing-hours">17</span></span>
               <span class="footer-separator">|</span>
-              <span>CEU Hours: 0</span>
+              <span>CEU Hours: <span id="footer-ceu-hours">0</span></span>
               <span class="footer-separator">|</span>
-              <span>Min Hours: 0</span>
+              <span>Min Hours: <span id="footer-min-hours">0</span></span>
               <span class="footer-separator">|</span>
-              <span>Max Hours: 20</span>
+              <span>Max Hours: <span id="footer-max-hours">20</span></span>
             </div>
           </div>
         </div>
@@ -394,6 +394,7 @@
     &copy; 2013-2026 Ellucian Company L.P. and its affiliates. All rights reserved.
   </footer>
 
+  <script src="profile-store.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
