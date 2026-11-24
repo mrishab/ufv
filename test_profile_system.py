@@ -106,6 +106,7 @@ def test_index_html_structure_and_ids():
     assert soup.find(id='curr-department') is not None
     assert soup.find(id='curr-concentration') is not None
     assert soup.find(id='curr-minor') is not None
+    assert soup.find(id='curr-concentration-2') is not None
     assert soup.find(id='curr-admit-type') is not None
     assert soup.find(id='curr-admit-term') is not None
     assert soup.find(id='curr-catalogue-term') is not None
@@ -201,6 +202,7 @@ def test_secret_html_structure():
     assert soup.find(id='field-primaryDepartment') is not None
     assert soup.find(id='field-primaryConcentration') is not None
     assert soup.find(id='field-primaryMinor') is not None
+    assert soup.find(id='field-primaryConcentration2') is not None
     assert soup.find(id='field-admitType') is not None
     assert soup.find(id='field-admitTerm') is not None
     assert soup.find(id='field-catalogueTerm') is not None
@@ -353,6 +355,7 @@ def test_dom_rendering_simulation():
     soup.find(id='curr-department').string = custom_profile['primaryDepartment']
     soup.find(id='curr-concentration').string = custom_profile['primaryConcentration']
     soup.find(id='curr-minor').string = custom_profile['primaryMinor']
+    soup.find(id='curr-concentration-2').string = custom_profile['primaryConcentration2']
     soup.find(id='curr-secondary-degree').string = custom_profile['secondaryDegree']
 
     # Hours
@@ -378,7 +381,7 @@ def test_dom_rendering_simulation():
     assert soup.find(id='footer-registered-hours').string == '15'
     assert standing_val.string == 'Dean\'s Honour List, as of Fall 2026'
 
-    # Verify no remnants of old hardcoded name in main identity elements
+    # Verify no remnants of old default template name in main identity elements
     assert 'Jane Doe' not in soup.find('h1').text
     assert 'Jane Doe' not in soup.find('span', class_='user-name').text
     assert 'Jane Doe' not in sidebar_name.text
@@ -407,7 +410,9 @@ def test_app_js_secret_triggers():
     # Typing trigger "secret"
     assert "'secret'" in content or '"secret"' in content
 
-    # Double click on sidebar avatar
+    # Double click on sidebar avatar and header user
+    assert 'sidebarAvatar' in content
+    assert 'headerUser' in content
     assert 'dblclick' in content
 
     # Storage event listener for cross-tab sync

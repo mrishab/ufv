@@ -226,6 +226,10 @@
     if (sidebarAvatar) {
       sidebarAvatar.src = profile.photoUrl || DEFAULT_PROFILE.photoUrl;
       sidebarAvatar.alt = profile.name;
+      sidebarAvatar.onerror = function () {
+        this.onerror = null;
+        this.src = DEFAULT_PROFILE.photoUrl;
+      };
     }
 
     const sidebarName = document.querySelector('.sidebar-name');
@@ -406,13 +410,16 @@
       coursesTbody.innerHTML = '';
       profile.courses.forEach((c) => {
         const tr = document.createElement('tr');
+        const crnDisplay = c.crn ? `<a href="#" class="table-link">${escapeHtml(c.crn)}</a>` : '';
+        const instructorDisplay = c.instructor ? `<a href="#" class="table-link">${escapeHtml(c.instructor)}</a>` : '';
+        const hoursDisplay = c.hours !== undefined && c.hours !== null ? escapeHtml(String(c.hours)) : '';
         tr.innerHTML = `
-          <td>${escapeHtml(c.title)}</td>
-          <td>${escapeHtml(c.details)}</td>
-          <td><a href="#" class="table-link">${escapeHtml(c.crn)}</a></td>
-          <td>${escapeHtml(String(c.hours))}</td>
-          <td>${escapeHtml(c.status)}</td>
-          <td><a href="#" class="table-link">${escapeHtml(c.instructor)}</a></td>
+          <td>${escapeHtml(c.title || '')}</td>
+          <td>${escapeHtml(c.details || '')}</td>
+          <td>${crnDisplay}</td>
+          <td>${hoursDisplay}</td>
+          <td>${escapeHtml(c.status || '')}</td>
+          <td>${instructorDisplay}</td>
         `;
         coursesTbody.appendChild(tr);
       });
