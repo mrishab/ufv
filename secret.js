@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'level', 'classStanding', 'status', 'residency', 'firstTermAttended', 'lastTermAttended',
     'gradApplications',
     'primaryDegree', 'primaryLevel', 'primaryCourse', 'primaryMajor', 'primaryDepartment',
-    'primaryConcentration', 'primaryMinor', 'admitType', 'admitTerm', 'catalogueTerm',
+    'primaryConcentration', 'primaryMinor', 'primaryConcentration2', 'admitType', 'admitTerm', 'catalogueTerm',
     'secondaryDegree', 'institutionalGpa',
     'totalRegisteredHours', 'billingHours', 'ceuHours', 'minHours', 'maxHours'
   ];
@@ -85,14 +85,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3500);
   }
 
+  // Fallback handlers for broken or invalid avatar images
+  if (editPhotoPreview) {
+    editPhotoPreview.onerror = function () {
+      this.onerror = null;
+      this.src = ProfileStore.DEFAULT_PROFILE.photoUrl;
+    };
+  }
+  if (livePreviewAvatar) {
+    livePreviewAvatar.onerror = function () {
+      this.onerror = null;
+      this.src = ProfileStore.DEFAULT_PROFILE.photoUrl;
+    };
+  }
+
   /**
    * Update photo display
    */
-  function setPhoto(urlOrData) {
+  function setPhoto(urlOrData, updateInput = true) {
     currentPhotoData = urlOrData || ProfileStore.DEFAULT_PROFILE.photoUrl;
     if (editPhotoPreview) editPhotoPreview.src = currentPhotoData;
     if (livePreviewAvatar) livePreviewAvatar.src = currentPhotoData;
-    if (fieldPhotoUrl) fieldPhotoUrl.value = currentPhotoData;
+    if (updateInput && fieldPhotoUrl && document.activeElement !== fieldPhotoUrl) {
+      fieldPhotoUrl.value = currentPhotoData;
+    }
   }
 
   /**
@@ -108,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     reader.onload = (e) => {
       const img = new Image();
       img.onload = () => {
-        const MAX_DIM = 500;
+        const MAX_DIM = 360;
         let width = img.width;
         let height = img.height;
 
@@ -131,9 +147,22 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.drawImage(img, 0, 0, width, height);
 
         const mime = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
-        const compressedDataUrl = canvas.toDataURL(mime, 0.85);
+        let compressedDataUrl = canvas.toDataURL(mime, 0.85);
 
-        setPhoto(compressedDataUrl);
+        // Safeguard: If PNG data URL is exceptionally large (> 1MB), re-encode as JPEG with white background
+        if (compressedDataUrl.length > 1000000) {
+          const bgCanvas = document.createElement('canvas');
+          bgCanvas.width = width;
+          bgCanvas.height = height;
+          const bgCtx = bgCanvas.getContext('2d');
+          bgCtx.fillStyle = '#FFFFFF';
+          bgCtx.fillRect(0, 0, width, height);
+          bgCtx.drawImage(img, 0, 0, width, height);
+          compressedDataUrl = bgCanvas.toDataURL('image/jpeg', 0.82);
+        }
+
+        setPhoto(compressedDataUrl, true);
+        if (fieldPhotoUrl) fieldPhotoUrl.value = compressedDataUrl;
         showToast('Photo uploaded and compressed successfully!', 'success');
         markUnsaved();
       };
@@ -408,10 +437,13 @@ document.addEventListener('DOMContentLoaded', () => {
     el.addEventListener('change', markUnsaved);
   });
 
-  // Direct image URL input
+  // Direct image URL input (updates live previews without clobbering input)
   if (fieldPhotoUrl) {
     fieldPhotoUrl.addEventListener('input', (e) => {
-      setPhoto(e.target.value.trim());
+      const val = e.target.value.trim();
+      currentPhotoData = val || ProfileStore.DEFAULT_PROFILE.photoUrl;
+      if (editPhotoPreview) editPhotoPreview.src = currentPhotoData;
+      if (livePreviewAvatar) livePreviewAvatar.src = currentPhotoData;
       markUnsaved();
     });
   }
@@ -423,7 +455,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Dropzone click
   if (photoDropzone && photoFileInput) {
-    photoDropzone.addEventListener('click', () => photoFileInput.click());
+    photoDropzone.addEventListener('click', (e) => {
+      if (e.target !== photoFileInput) {
+        photoFileInput.click();
+      }
+    });
 
     photoDropzone.addEventListener('dragover', (e) => {
       e.preventDefault();
@@ -443,6 +479,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Global window drag & drop prevention (prevents browser navigating away on miss)
+  window.addEventListener('dragover', (e) => e.preventDefault(), false);
+  window.addEventListener('drop', (e) => e.preventDefault(), false);
+
   // File input change
   if (photoFileInput) {
     photoFileInput.addEventListener('change', (e) => {
@@ -455,13 +495,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Revert photo button
   if (btnResetPhoto) {
     btnResetPhoto.addEventListener('click', () => {
-      setPhoto(ProfileStore.DEFAULT_PROFILE.photoUrl);
+      setPhoto(ProfileStore.DEFAULT_PROFILE.photoUrl, true);
+      if (fieldPhotoUrl) fieldPhotoUrl.value = ProfileStore.DEFAULT_PROFILE.photoUrl;
+      if (photoFileInput) photoFileInput.value = '';
       showToast('Photo reverted to default avatar.', 'info');
       markUnsaved();
     });
   }
 
-  // Semester / Year changes -> Auto-sync term text
+  // Semester / Year changes -> Auto-sync term text and term options
   function syncTermFromSemesterAndYear() {
     const sem = fieldCurrentSemester ? fieldCurrentSemester.value : 'Winter';
     const yr = fieldCurrentYear ? fieldCurrentYear.value.trim() : '2027';
@@ -469,6 +511,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fieldCurrentTerm) {
       fieldCurrentTerm.value = newTerm;
     }
+
+    const fieldTermsList = document.getElementById('field-termsList');
+    if (fieldTermsList && fieldTermsList.value) {
+      const lines = fieldTermsList.value.split('\n').map(l => l.trim()).filter(Boolean);
+      let updated = false;
+      const newLines = lines.map(line => {
+        if (/current term/i.test(line)) {
+          updated = true;
+          return newTerm;
+        }
+        return line;
+      });
+      if (!updated) {
+        newLines.unshift(newTerm);
+      }
+      fieldTermsList.value = newLines.join('\n');
+    }
+
     markUnsaved();
   }
 
@@ -514,19 +574,42 @@ document.addEventListener('DOMContentLoaded', () => {
     btnRecalcHours.addEventListener('click', recalcHours);
   }
 
-  // Save changes button
-  if (btnSaveProfile) {
-    btnSaveProfile.addEventListener('click', () => {
-      try {
-        const profile = collectFormData();
-        ProfileStore.saveProfile(profile);
-        showToast('All changes saved to localStorage! Website now renders your custom profile.', 'success');
-        updateStorageStatus(true);
-      } catch (err) {
-        showToast(`Failed to save: ${err.message || 'Storage quota exceeded'}`, 'error');
-      }
-    });
+  // Save changes handler
+  function saveProfileChanges() {
+    const nameInp = document.getElementById('field-name');
+    const idInp = document.getElementById('field-studentId');
+    if (!nameInp || !nameInp.value.trim()) {
+      showToast('Full Name cannot be empty.', 'error');
+      if (nameInp) nameInp.focus();
+      return;
+    }
+    if (!idInp || !idInp.value.trim()) {
+      showToast('Student ID cannot be empty.', 'error');
+      if (idInp) idInp.focus();
+      return;
+    }
+
+    try {
+      const profile = collectFormData();
+      ProfileStore.saveProfile(profile);
+      showToast('All changes saved to localStorage! Website now renders your custom profile.', 'success');
+      updateStorageStatus(true);
+    } catch (err) {
+      showToast(`Failed to save: ${err.message || 'Storage quota exceeded'}`, 'error');
+    }
   }
+
+  if (btnSaveProfile) {
+    btnSaveProfile.addEventListener('click', saveProfileChanges);
+  }
+
+  // Keyboard shortcut: Ctrl+S or Cmd+S to save on secret page
+  window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key && e.key.toLowerCase() === 's') {
+      e.preventDefault();
+      saveProfileChanges();
+    }
+  });
 
   // Clear localStorage (Reset) button
   if (btnClearStorage) {
@@ -535,6 +618,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!confirmClear) return;
 
       ProfileStore.clearProfile();
+      if (photoFileInput) photoFileInput.value = '';
       populateForm(ProfileStore.DEFAULT_PROFILE);
       showToast('localStorage cleared! Original profile details restored.', 'info');
       updateStorageStatus(true);

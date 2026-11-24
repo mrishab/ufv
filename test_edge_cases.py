@@ -117,7 +117,52 @@ def test_null_or_empty_photo():
 
     # Verify fallback for photoUrl
     assert 'profile.photoUrl || DEFAULT_PROFILE.photoUrl' in content
-    print("✓ Missing or null photoUrl correctly falls back to default avatar.")
+    assert 'sidebarAvatar.onerror' in content
+    print("✓ Missing or null photoUrl correctly falls back to default avatar and has onerror guard.")
+
+def test_dropzone_and_file_input_hierarchy():
+    with open('/workspace/secret.html') as f:
+        soup = BeautifulSoup(f.read(), 'html.parser')
+
+    dropzone = soup.find(id='photo-dropzone')
+    file_input = soup.find(id='photo-file-input')
+    assert dropzone is not None
+    assert file_input is not None
+    # Ensure file_input is NOT inside dropzone to prevent recursive click bubbling loop
+    assert file_input not in dropzone.descendants, "photo-file-input must not be nested inside photo-dropzone"
+    print("✓ photo-file-input is not nested inside photo-dropzone (prevents click bubbling loop).")
+
+def test_secret_js_robustness():
+    with open('/workspace/secret.js') as f:
+        content = f.read()
+
+    # Check primaryConcentration2 in fieldIds
+    assert "'primaryConcentration2'" in content, "primaryConcentration2 must be in fieldIds"
+
+    # Check Ctrl+S / Cmd+S save shortcut
+    assert 'saveProfileChanges' in content
+    assert 'ctrlKey' in content and 'metaKey' in content
+
+    # Check dragover/drop preventDefault on window
+    assert 'window.addEventListener(\'dragover\'' in content
+    assert 'window.addEventListener(\'drop\'' in content
+
+    # Check name/ID validation
+    assert 'Full Name cannot be empty' in content
+    assert 'Student ID cannot be empty' in content
+
+    print("✓ secret.js includes concentration2, keyboard shortcuts, window drop guards, and field validation.")
+
+def test_course_rows_null_safety():
+    with open('/workspace/profile-store.js') as f:
+        content = f.read()
+
+    # Verify that String(c.hours) is guarded against null/undefined
+    assert 'c.hours !== undefined && c.hours !== null' in content
+    # Verify that crn and instructor links are guarded against empty/null
+    assert 'crnDisplay' in content
+    assert 'instructorDisplay' in content
+    print("✓ profile-store.js safely handles null/undefined in courses table rendering.")
 
 if __name__ == '__main__':
     print("Running edge case tests...")
@@ -125,4 +170,7 @@ if __name__ == '__main__':
     test_corrupted_localstorage_handling()
     test_empty_courses_and_degrees()
     test_null_or_empty_photo()
+    test_dropzone_and_file_input_hierarchy()
+    test_secret_js_robustness()
+    test_course_rows_null_safety()
     print("\nALL EDGE CASE TESTS PASSED SUCCESSFULLY!")
