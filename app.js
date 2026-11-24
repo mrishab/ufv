@@ -77,6 +77,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const headerUser = document.querySelector('.header-user');
+  if (headerUser) {
+    headerUser.style.cursor = 'pointer';
+    headerUser.title = 'Double click to open profile settings';
+    headerUser.addEventListener('dblclick', () => {
+      window.location.href = 'secret.html';
+    });
+  }
+
   // Secret keyboard combination: Ctrl + Shift + S or Alt + S
   window.addEventListener('keydown', (e) => {
     if (((e.ctrlKey || e.metaKey) && e.shiftKey && e.key && e.key.toLowerCase() === 's') ||
