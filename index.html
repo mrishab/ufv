@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile - Jane Doe (300000000)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Window Top Bar (matches reference.jpg frame y=0..5) -->
+  <div class="window-top-bar"></div>
+
+  <!-- Top Header Bar -->
+  <header class="header-container">
+    <div class="header">
+      <div class="header-logo">
+        <a href="#" aria-label="University of the Fraser Valley Home">
+          <img src="assets/ufv_logo.png" alt="University of the Fraser Valley">
+        </a>
+      </div>
+      <div class="header-right">
+        <button class="header-icon-btn" aria-label="Settings" title="Settings">
+          <!-- 8-tooth gear matching reference screenshot -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+          </svg>
+        </button>
+        <div class="header-user" role="button" tabindex="0">
+          <!-- Circular outline with white bust silhouette matching reference user_ref.png -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="#FFFFFF" stroke-width="1.8"/>
+            <circle cx="12" cy="8.5" r="3.6" fill="#FFFFFF"/>
+            <path d="M5.5 19.2c.4-3.3 3.3-5.2 6.5-5.2s6.1 1.9 6.5 5.2" fill="#FFFFFF"/>
+          </svg>
+          <span class="user-name">Jane Doe</span>
+        </div>
+      </div>
+    </div>
+    <!-- Accent Line -->
+    <div class="header-accent"></div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <a href="#" class="breadcrumb-link">Student</a>
+    <span class="breadcrumb-separator">•</span>
+    <a href="#" class="breadcrumb-link">Student Profile</a>
+  </nav>
+
+  <!-- Title Row -->
+  <section class="title-bar">
+    <h1>Student Profile - Jane Doe (300000000)</h1>
+  </section>
+
+  <!-- Notification / Status Banner -->
+  <section class="status-bar" aria-label="Status Banner">
+    <div class="status-capsule">
+      <!-- Section 1: Term Dropdown -->
+      <div class="status-sec-1">
+        <label for="term-select" class="term-label">Term:</label>
+        <select id="term-select" class="status-select">
+          <option selected>Winter 2027 Current Term</option>
+          <option>Fall 2026</option>
+          <option>Summer 2026</option>
+          <option>Winter 2026</option>
+        </select>
+      </div>
+
+      <div class="status-divider"></div>
+
+      <!-- Section 2: Standing -->
+      <div class="status-sec-2">
+        <span class="standing-label">Standing:</span>
+        <span class="standing-val">Good Standing, as of Fall 2026</span>
+      </div>
+
+      <div class="status-divider"></div>
+
+      <!-- Section 3: Middle empty span -->
+      <div class="status-sec-3"></div>
+
+      <div class="status-divider"></div>
+
+      <!-- Section 4: Right empty span inside capsule -->
+      <div class="status-sec-4"></div>
+    </div>
+
+    <!-- Status Bar Right -->
+    <div class="status-right">
+      <div class="status-badge-item">
+        <span class="status-label">Registration Notices:</span>
+        <span class="status-badge">3</span>
+      </div>
+      <span class="status-pipe">|</span>
+      <div class="status-badge-item">
+        <span class="status-label">Holds:</span>
+        <span class="status-badge">0</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Body Layout -->
+  <main class="layout-wrapper">
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-profile">
+        <img src="assets/avatar.jpg" alt="Jane Doe" class="sidebar-avatar">
+        <a href="#" class="sidebar-name">Jane Doe</a>
+      </div>
+
+      <nav class="sidebar-menu-top" aria-label="Primary Navigation">
+        <a href="#curriculum" class="sidebar-item-top active">Curriculum and Units</a>
+        <a href="#prior-education" class="sidebar-item-top sub-1">Prior Education and Testing</a>
+        <a href="#additional-links" class="sidebar-item-top sub-2">Additional Links</a>
+      </nav>
+
+      <nav class="sidebar-menu-bottom" aria-label="Secondary Navigation">
+        <a href="#midterm-grades" class="sidebar-link">View Midterm and Final Grades</a>
+        <a href="#transcript" class="sidebar-link">Academic Transcript</a>
+        <a href="#myclass" class="sidebar-link">MyClass</a>
+        <a href="#mygradplan" class="sidebar-link">MyGRADplan</a>
+        <a href="#grad-application" class="sidebar-link">View Graduation Application</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="content-area">
+      <!-- Left Content Column (Bio, General, Graduation Info) -->
+      <section class="content-left">
+        <!-- Bio Information -->
+        <article class="section-block">
+          <h2 class="section-header">Bio Information</h2>
+          <div class="kv-grid">
+            <div class="kv-label">Email:</div>
+            <div class="kv-value">
+              <a href="mailto:jane.doe@student.ufv.ca" class="kv-link">jane.doe@student.ufv.ca</a>
+            </div>
+
+            <div class="kv-label">Date of Birth:</div>
+            <div class="kv-value">01/01</div>
+
+            <div class="kv-label">Citizenship Resident Status:</div>
+            <div class="kv-value">Canadian Citizen</div>
+
+            <div class="kv-label">Emergency Contact:</div>
+            <div class="kv-value">Doe, John</div>
+
+            <div class="kv-label">Emergency Phone:</div>
+            <div class="kv-value">604 555 0100</div>
+          </div>
+        </article>
+
+        <!-- General Information -->
+        <article class="section-block">
+          <h2 class="section-header">
+            General Information
+            <span class="info-icon" title="General Information details">i</span>
+          </h2>
+          <div class="kv-grid">
+            <div class="kv-label">Level:</div>
+            <div class="kv-value">Credit</div>
+
+            <div class="kv-label">Class:</div>
+            <div class="kv-value">91 or more credits completed</div>
+
+            <div class="kv-label">Status:</div>
+            <div class="kv-value">Active</div>
+
+            <div class="kv-label">Residency:</div>
+            <div class="kv-value">Fraser Valley (UFV) region</div>
+
+            <div class="kv-label">First Term Attended:</div>
+            <div class="kv-value">Fall 2023</div>
+
+            <div class="kv-label">Last Term Attended:</div>
+            <div class="kv-value">Winter 2027</div>
+          </div>
+        </article>
+
+        <!-- Graduation Information -->
+        <article class="section-block">
+          <h2 class="section-header">Graduation Information</h2>
+          <div class="kv-grid">
+            <div class="kv-label">Graduation Applications:</div>
+            <div class="kv-value">None</div>
+
+            <div class="kv-label">Awarded Degree:</div>
+            <div class="kv-value">Associate of Science</div>
+
+            <div class="kv-label">Date:</div>
+            <div class="kv-value">01/05/2024</div>
+
+            <div class="kv-label">Awarded Degree:</div>
+            <div class="kv-value">Computing Studies Certificate</div>
+
+            <div class="kv-label">Date:</div>
+            <div class="kv-value">01/05/2024</div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Right Content Column (Curriculum, Hours & GPA, Registered Courses) -->
+      <section class="content-right">
+        <!-- Card 1: CURRICULUM, HOURS & GPA -->
+        <div class="card" id="card-curriculum">
+          <div class="card-header" role="button" tabindex="0">
+            <span class="card-title">CURRICULUM, HOURS &amp; GPA</span>
+            <button class="chevron-btn" aria-label="Toggle Curriculum details">
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="#333333">
+                <polygon points="6,0 12,8 0,8"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="card-body">
+            <!-- Tabs -->
+            <div class="card-tabs" role="tablist">
+              <button class="tab-btn active" role="tab" aria-selected="true" data-tab="tab-primary">Primary</button>
+              <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-secondary">Secondary</button>
+              <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-hours">Hours &amp; GPA</button>
+            </div>
+
+            <!-- Tab 1: Primary Pane -->
+            <div class="tab-pane active" id="tab-primary" role="tabpanel">
+              <div class="card-kv-grid">
+                <div class="kv-label">Degree:</div>
+                <div class="kv-value">Bach of Comp Info Systems</div>
+
+                <div class="kv-label">Level:</div>
+                <div class="kv-value">Credit</div>
+
+                <div class="kv-label">Course:</div>
+                <div class="kv-value">Bachelor of Computer Info Sys</div>
+
+                <div class="kv-label">Major:</div>
+                <div class="kv-value">Computer Info Systems Deg</div>
+
+                <div class="kv-label">Department:</div>
+                <div class="kv-value">School of Computing</div>
+
+                <div class="kv-label">Concentration:</div>
+                <div class="kv-value">Not Provided</div>
+
+                <div class="kv-label">Minor:</div>
+                <div class="kv-value">Not Provided</div>
+
+                <div class="kv-label">Concentration:</div>
+                <div class="kv-value">Not Provided</div>
+
+                <div class="kv-label">Admit Type:</div>
+                <div class="kv-value">Post-Secondary Entry</div>
+
+                <div class="kv-label">Admit Term:</div>
+                <div class="kv-value">Fall 2023</div>
+
+                <div class="kv-label">Catalogue Term:</div>
+                <div class="kv-value">Fall 2023</div>
+              </div>
+            </div>
+
+            <!-- Tab 2: Secondary Pane -->
+            <div class="tab-pane" id="tab-secondary" role="tabpanel">
+              <div class="card-kv-grid">
+                <div class="kv-label">Degree:</div>
+                <div class="kv-value">None</div>
+              </div>
+            </div>
+
+            <!-- Tab 3: Hours & GPA Pane -->
+            <div class="tab-pane" id="tab-hours" role="tabpanel">
+              <div class="card-kv-grid">
+                <div class="kv-label">Total Registered Hours:</div>
+                <div class="kv-value">17</div>
+
+                <div class="kv-label">Billing Hours:</div>
+                <div class="kv-value">17</div>
+
+                <div class="kv-label">CEU Hours:</div>
+                <div class="kv-value">0</div>
+
+                <div class="kv-label">Min Hours:</div>
+                <div class="kv-value">0</div>
+
+                <div class="kv-label">Max Hours:</div>
+                <div class="kv-value">20</div>
+
+                <div class="kv-label">Institutional GPA:</div>
+                <div class="kv-value">Not Provided</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: REGISTERED COURSES -->
+        <div class="card" id="card-courses">
+          <div class="card-header" role="button" tabindex="0">
+            <span class="card-title">REGISTERED COURSES</span>
+            <button class="chevron-btn" aria-label="Toggle Registered Courses details">
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="#333333">
+                <polygon points="6,0 12,8 0,8"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="card-body">
+            <div class="table-wrapper">
+              <table class="courses-table">
+                <thead>
+                  <tr>
+                    <th style="width: 26.9%;">Unit Title</th>
+                    <th style="width: 13.1%;">Details</th>
+                    <th style="width: 9.9%;">CRN</th>
+                    <th style="width: 10.0%;">Hours</th>
+                    <th style="width: 19.8%;">Registration Status</th>
+                    <th style="width: 20.3%;">Instructor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Design &amp; Analysis: Algorithms</td>
+                    <td>COMP 359 ON1</td>
+                    <td><a href="#" class="table-link">10444</a></td>
+                    <td>3</td>
+                    <td>Registered (via web)</td>
+                    <td><a href="#" class="table-link">Maryam Siahbani</a></td>
+                  </tr>
+                  <tr>
+                    <td>Introduction to Robotics</td>
+                    <td>COMP 361 ON1</td>
+                    <td><a href="#" class="table-link">10446</a></td>
+                    <td>3</td>
+                    <td>Registered (via web)</td>
+                    <td><a href="#" class="table-link">Amir Shabani</a></td>
+                  </tr>
+                  <tr>
+                    <td>Web Server Installation &amp; Main</td>
+                    <td>COMP 445 ON1</td>
+                    <td><a href="#" class="table-link">10457</a></td>
+                    <td>3</td>
+                    <td>Registered (via web)</td>
+                    <td><a href="#" class="table-link">Talia Q</a></td>
+                  </tr>
+                  <tr>
+                    <td>Natural Language Processing</td>
+                    <td>COMP 482 AB1</td>
+                    <td><a href="#" class="table-link">10458</a></td>
+                    <td>3</td>
+                    <td>Registered (via web)</td>
+                    <td><a href="#" class="table-link">Matthew Huang</a></td>
+                  </tr>
+                  <tr>
+                    <td>Waves/Optics/Electromagnetism</td>
+                    <td>PHYS 118 A#C</td>
+                    <td><a href="#" class="table-link">10941</a></td>
+                    <td>0</td>
+                    <td>Registered (via web)</td>
+                    <td><a href="#" class="table-link">Mark Rempel</a></td>
+                  </tr>
+                  <tr>
+                    <td>Waves/Optics/Electromagnetism</td>
+                    <td>PHYS 118 AB2</td>
+                    <td><a href="#" class="table-link">10945</a></td>
+                    <td>5</td>
+                    <td>Registered (via web)</td>
+                    <td><a href="#" class="table-link">Shahrazad Malek</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Table Footer Summary Bar -->
+            <div class="courses-footer">
+              <span class="footer-title">Total Hours</span>
+              <span class="footer-separator">|</span>
+              <span>Registered Hours: 17</span>
+              <span class="footer-separator">|</span>
+              <span>Billing Hours: 17</span>
+              <span class="footer-separator">|</span>
+              <span>CEU Hours: 0</span>
+              <span class="footer-separator">|</span>
+              <span>Min Hours: 0</span>
+              <span class="footer-separator">|</span>
+              <span>Max Hours: 20</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    &copy; 2013-2026 Ellucian Company L.P. and its affiliates. All rights reserved.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
